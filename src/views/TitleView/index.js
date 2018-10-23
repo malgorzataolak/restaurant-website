@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
+import posed, { PoseGroup } from "react-pose";
 import mainbig from "./assets/mainbig.jpg";
 import main600 from "./assets/main600.jpg";
 import main900 from "./assets/main900.jpg";
@@ -15,7 +16,8 @@ class TitleView extends Component {
     this.state = {
       images: [sushi1, sushi2, sushi3],
       currentIndex: 0,
-      translateValue: 0
+      translateValue: 0,
+      leftVisible: false
     };
     this.nextPicture = this.nextPicture.bind(this);
     this.previousPicture = this.previousPicture.bind(this);
@@ -24,23 +26,29 @@ class TitleView extends Component {
 
   nextPicture() {
     if (this.state.currentIndex === this.state.images.length - 1) {
-      return this.setState({
+      return this.setState(prevState => ({
         currentIndex: 0,
-        translateValue: 0
-      });
+        translateValue: 0,
+        leftVisible: false
+      }));
     }
     this.setState(prevState => ({
       currentIndex: prevState.currentIndex + 1,
-      translateValue: prevState.translateValue + -this.getCurrentWidth()
+      translateValue: prevState.translateValue + -this.getCurrentWidth(),
+      leftVisible: true
     }));
   }
 
   previousPicture() {
     if (this.state.currentIndex === 0) {
-      return this.setState(prevState => ({
+      /* return this.setState(prevState => ({
         currentIndex: this.state.images.length - 1,
-        translateValue: prevState.translateValue + this.getCurrentWidth()
-      }));
+        translateValue: 0
+      })); */
+      return;
+    }
+    if (this.state.currentIndex == 1) {
+      this.setState({ leftVisible: false });
     }
 
     this.setState(prevState => ({
@@ -57,13 +65,20 @@ class TitleView extends Component {
     console.log("currentState", this.state);
     return (
       <Container>
-        <ArrowLeft onClick={this.previousPicture} />
-
-        <Slider
-          id={"slider"}
-          image={this.state.images[this.state.currentIndex]}
-          value={this.state.translateValue}
+        <ArrowLeft
+          leftArrow={this.state.leftVisible}
+          onClick={this.previousPicture}
         />
+        <SliderWrapper value={this.state.translateValue}>
+          {this.state.images.map((image, i) => (
+            <Slider
+              key={i}
+              id={"slider"}
+              image={this.state.images[this.state.currentIndex]}
+              value={this.state.translateValue}
+            />
+          ))}
+        </SliderWrapper>
 
         <ArrowRight onClick={this.nextPicture} />
       </Container>
@@ -73,6 +88,7 @@ class TitleView extends Component {
 
 export default TitleView;
 const SliderWrapper = styled.div`
+  position: relative;
   height: 100%;
   width: 100%;
   transform: ${props =>
@@ -100,16 +116,6 @@ const Slider = styled.img.attrs({
 })`
   height: 100%;
   width: 100%;
-  transform: ${props =>
-    props.value
-      ? `
-translateX($
-{
-    props.value
-}
-px)`
-      : undefined};
-  transition: transform ease-out 0.9s;
 `;
 
 const MainImg = styled.img.attrs({
@@ -151,4 +157,10 @@ const ArrowLeft = styled.div`
     opacity: 0.9;
     cursor: pointer;
   }
+  ${({ leftArrow }) =>
+    !leftArrow &&
+    `
+
+    display:none;
+    `};
 `;
