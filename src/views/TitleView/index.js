@@ -36,7 +36,12 @@ class TitleView extends Component {
   }
 
   previousPicture() {
-    if (this.state.currentIndex === 0) return;
+    if (this.state.currentIndex === 0) {
+      return this.setState(prevState => ({
+        currentIndex: this.state.images.length - 1,
+        translateValue: prevState.translateValue + this.getCurrentWidth()
+      }));
+    }
 
     this.setState(prevState => ({
       currentIndex: prevState.currentIndex - 1,
@@ -57,6 +62,7 @@ class TitleView extends Component {
         <Slider
           id={"slider"}
           image={this.state.images[this.state.currentIndex]}
+          value={this.state.translateValue}
         />
 
         <ArrowRight onClick={this.nextPicture} />
@@ -77,17 +83,33 @@ const SliderWrapper = styled.div`
 const Container = styled.div`
   position: relative;
   width: 100%;
-  height: 770px;
+  height: 100%;
   overflow: hidden;
   white-space: nowrap;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 `;
 
-const Slider = styled.div`
+const Slider = styled.img.attrs({
+  src: props => props.image
+})`
   height: 100%;
   width: 100%;
-  background-image: ${props =>
-    props.image ? `url(${props.image})` : undefined};
-  background-size: cover;
+  transform: ${props =>
+    props.value
+      ? `
+translateX($
+{
+    props.value
+}
+px)`
+      : undefined};
+  transition: transform ease-out 0.9s;
 `;
 
 const MainImg = styled.img.attrs({
