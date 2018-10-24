@@ -21,18 +21,28 @@ class TitleView extends Component {
       translateValue: 0,
       leftVisible: false
     };
+    this.interval = null;
     this.nextPicture = this.nextPicture.bind(this);
     this.previousPicture = this.previousPicture.bind(this);
     this.getCurrentWidth = this.getCurrentWidth.bind(this);
   }
 
+  componentDidMount() {
+    if (this.interval) clearInterval(this.interval);
+    this.interval = setInterval(this.nextPicture, 3500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   nextPicture() {
     if (this.state.currentIndex === this.state.images.length - 1) {
-      return this.setState(prevState => ({
+      return this.setState({
         currentIndex: 0,
         translateValue: 0,
         leftVisible: false
-      }));
+      });
     }
     this.setState(prevState => ({
       currentIndex: prevState.currentIndex + 1,
