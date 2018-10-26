@@ -17,6 +17,17 @@ class TitleView extends Component {
         { big: sushi2, xl: sushi2_1100 },
         { big: sushi3, xl: sushi3_1100 }
       ],
+      texts: [
+        {
+          main: "Lorem Ipsum",
+          sub: "dolor sit amet, consectetur adipiscing elit"
+        },
+        {
+          main: "Ut enim ad minim veniam",
+          sub: "quis nostrud exercitation ullamco "
+        },
+        { main: "Excepteur sint occaecat", sub: "cupidatat non proident" }
+      ],
       currentIndex: 0,
       translateValue: 0,
       leftVisible: false
@@ -91,7 +102,12 @@ class TitleView extends Component {
             />
           ))}
         </SliderWrapper>
-
+        <TextContainer>
+          <TextWrapper
+            textMain={this.state.texts[this.state.currentIndex].main}
+            textSub={this.state.texts[this.state.currentIndex].sub}
+          />
+        </TextContainer>
         <ArrowRight onClick={this.nextPicture} />
       </Container>
     );
@@ -99,6 +115,34 @@ class TitleView extends Component {
 }
 
 export default TitleView;
+
+const TextContainer = styled.div`
+  position: absolute;
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.42);
+  color: white;
+  opacity: 0.9;
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+  }
+  h2 {
+    margin: 0;
+    font-size: 2rem;
+  }
+`;
+
+const TextWrapper = ({ textMain, textSub }) => (
+  <Fragment>
+    <h1>{textMain}</h1>
+    <h2>{textSub}</h2>
+  </Fragment>
+);
+
 const SliderWrapper = styled.div`
   position: relative;
   height: 100%;
