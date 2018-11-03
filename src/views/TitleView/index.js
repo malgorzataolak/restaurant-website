@@ -64,10 +64,6 @@ class TitleView extends Component {
 
   previousPicture() {
     if (this.state.currentIndex === 0) {
-      /* return this.setState(prevState => ({
-        currentIndex: this.state.images.length - 1,
-        translateValue: 0
-      })); */
       return;
     }
     if (this.state.currentIndex == 1) {
@@ -94,12 +90,20 @@ class TitleView extends Component {
         />
         <SliderWrapper value={this.state.translateValue}>
           {this.state.images.map((image, i) => (
-            <Slider
-              key={i}
-              id={"slider"}
-              image={this.state.images[this.state.currentIndex]}
-              value={this.state.translateValue}
-            />
+            <Fragment>
+              <picture>
+                <source
+                  media="(max-width: 1000px)"
+                  srcSet={this.state.images[this.state.currentIndex].xl}
+                />
+                <Slider
+                  key={i}
+                  id={"slider"}
+                  image={this.state.images[this.state.currentIndex]}
+                  value={this.state.translateValue}
+                />
+              </picture>
+            </Fragment>
           ))}
         </SliderWrapper>
         <TextContainer>
@@ -127,12 +131,17 @@ const TextContainer = styled.div`
   color: white;
   opacity: 0.9;
   h1 {
-    font-size: 3rem;
+    font-size: calc(20px + 10 * ((100vw - 320px) / 680));
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
     margin: 0;
   }
   h2 {
     margin: 0;
-    font-size: 2rem;
+    font-family: "Raleway", sans-serif;
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+    font-weight: 300;
+    font-style: italic;
   }
 `;
 
@@ -153,11 +162,11 @@ const SliderWrapper = styled.div`
 `;
 
 const Slider = styled.img.attrs({
-  //src: props => props.image.big,
-  srcSet: props =>
+  src: props => props.image.big
+  /*srcSet: props =>
     props.image
       ? `${props.image.big} 1600w, ${props.image.xl} 1100w `
-      : "undefined"
+      : "undefined" */
 })`
   height: 100%;
   width: 100%;
@@ -219,6 +228,10 @@ const Container = styled.div`
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+
+  img {
+    width: 100%;
+  }
 
   @media screen and (max-width: 1100px) {
     ${ArrowLeft} {
