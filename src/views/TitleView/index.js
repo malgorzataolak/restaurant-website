@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
-import posed, { PoseGroup } from "react-pose";
 import sushi1 from "./assets/Sushi1.png";
 import sushi1_1100 from "./assets/Sushi1_1100.png";
 import sushi2 from "./assets/Sushi2.png";
 import sushi2_1100 from "./assets/Sushi2_1100.png";
 import sushi3 from "./assets/Sushi3.png";
 import sushi3_1100 from "./assets/Sushi3_1100.png";
+import phone from "./assets/phone.png";
 
 class TitleView extends Component {
   constructor(props) {
@@ -112,6 +112,11 @@ class TitleView extends Component {
             textSub={this.state.texts[this.state.currentIndex].sub}
           />
         </TextContainer>
+        <ReserveButton href="tel:48000000000">
+          <PhoneIcon src={phone} />
+          Reserve Table
+          <p>+48 000 000 000</p>
+        </ReserveButton>
         <ArrowRight onClick={this.nextPicture} />
       </Container>
     );
@@ -120,9 +125,49 @@ class TitleView extends Component {
 
 export default TitleView;
 
+const PhoneIcon = styled.img`
+  filter: invert(100%);
+  margin-top: 2px;
+  margin-right: 5px;
+  width: 30px;
+  float: left;
+`;
+
+const ReserveButton = styled.a`
+  //left: 50%;
+  right: 100px;
+  text-align: center;
+  // transform: translate(-50%, -50%);
+  position: absolute;
+  font-size: 14px;
+  //bottom:20px;
+  top: 100px;
+
+  text-align: center;
+  background: rgb(0, 0, 0, 0.3);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  border: 2px solid white;
+  box-shadow: 0px 2px 18px 0px rgba(0, 0, 0, 0.75);
+  color: white;
+  text-transform: uppercase;
+  padding: 16px 25px;
+  padding-left: 20px;
+  p {
+    margin: 2px;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: background-color 1000ms linear;
+  }
+`;
+
 const TextContainer = styled.div`
   position: absolute;
-  z-index: 1001;
+  z-index: 1;
   top: 50%;
   left: 50%;
   text-align: center;
@@ -155,6 +200,9 @@ const TextWrapper = ({ textMain, textSub }) => (
 const SliderWrapper = styled.div`
   position: relative;
   height: 100%;
+  img {
+    width: 100%;
+  }
   width: 100%;
   transform: ${props =>
     props.value ? `translateX(${props.value}px)` : undefined};
@@ -228,10 +276,6 @@ const Container = styled.div`
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
-
-  img {
-    width: 100%;
-  }
 
   @media screen and (max-width: 1100px) {
     ${ArrowLeft} {

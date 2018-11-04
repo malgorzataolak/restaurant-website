@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
+import HamburgerMenu from "./HamburgerMenu";
 import menuicon from "./assets/menubar.png";
 import logoicon from "./assets/logo.svg";
 
@@ -11,7 +12,9 @@ class NavigationBar extends Component {
   render() {
     return (
       <NavigationContainer>
-        <MenuIcon icon={menuicon} />
+        <MenuLeft>
+          <HamburgerMenu />
+        </MenuLeft>
         <LogoCenter>
           <Logo />
         </LogoCenter>
@@ -41,17 +44,51 @@ const Logo = () => (
   </LogoContainer>
 );
 
+const MenuLeft = styled.div`
+  position: absolute;
+  leftt: 0;
+  @media screen and (min-width: 1100px) {
+    display: none;
+  }
+`;
+
 const MenuRight = styled.div`
   position: absolute;
   right: 10px;
   top: 0px;
-  margin-top: 20px;
+  text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.42);
   a {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.15em;
+
+    display: inline-block;
+    padding: 20px 15px 9px 15px;
+    margin: 0 5px;
+    position: relative;
     letter-spacing: 0.05rem;
-    font-size: 17px;
-    padding: 15px;
+    font-size: 15px;
+    font-weight: 700;
     text-decoration: none;
     color: white;
+
+    &:after {
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 1px;
+      left: 50%;
+      position: absolute;
+      background: rgba(255, 255, 255, 0.6);
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+
+    &:hover:after {
+      width: 100%;
+      left: 0;
+    }
   }
   @media screen and (max-width: 1100px) {
     display: none;
@@ -64,6 +101,7 @@ const LogoCenter = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.42);
   @media screen and (min-width: 1100px) {
     margin-left: 1%;
     justify-content: left;
@@ -99,18 +137,7 @@ const NavigationContainer = styled.div`
   background: rgba(0, 0, 0, 0.2);
   width: 100%;
   @media screen and (min-width: 1100px) {
-    width: 80%;
-    margin: 0 10%;
-  }
-`;
-
-const MenuIcon = styled.img.attrs({
-  src: props => props.icon
-})`
-  height: 60px;
-  position: absolute;
-  filter: invert(100%);
-  @media screen and (min-width: 1100px) {
-    display: none;
+    //  width: 80%;
+    // margin: 0 10%;
   }
 `;
