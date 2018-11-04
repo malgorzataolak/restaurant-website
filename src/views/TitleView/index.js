@@ -7,6 +7,10 @@ import sushi2_1100 from "./assets/Sushi2_1100.png";
 import sushi3 from "./assets/Sushi3.png";
 import sushi3_1100 from "./assets/Sushi3_1100.png";
 import phone from "./assets/phone.png";
+import facebook from "./assets/Facebook.png";
+import snapchat from "./assets/Snapchat.png";
+import instagram from "./assets/Instagram.png";
+import youtube from "./assets/YouTube.png";
 
 class TitleView extends Component {
   constructor(props) {
@@ -118,12 +122,52 @@ class TitleView extends Component {
           <p>+48 000 000 000</p>
         </ReserveButton>
         <ArrowRight onClick={this.nextPicture} />
+        <SocialMediaPanel />
       </Container>
     );
   }
 }
 
 export default TitleView;
+
+const SocialMediaPanel = () => (
+  <SocialMediaContainer>
+    <a href="http://facebook.com">
+      {" "}
+      <img src={facebook} alt="Facebook" />
+    </a>
+    <a href="http://instagram.com">
+      {" "}
+      <img src={instagram} alt="Instagram" />
+    </a>
+    <a href="http://youtube.com">
+      {" "}
+      <img src={youtube} alt="YouTube" />
+    </a>
+    <a href="http://snapchat.com">
+      {" "}
+      <img src={snapchat} alt="Snapchat" />
+    </a>
+  </SocialMediaContainer>
+);
+
+const SocialMediaContainer = styled.div`
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  img {
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 5px;
+    cursor: pointer;
+    &:hover {
+      filter: invert(100%);
+      opacity: 0.9;
+    }
+  }
+`;
 
 const PhoneIcon = styled.img`
   filter: invert(100%);
