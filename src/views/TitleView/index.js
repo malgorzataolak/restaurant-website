@@ -157,13 +157,14 @@ const SocialMediaContainer = styled.div`
   display: flex;
   flex-direction: row;
   img {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin: 5px;
     cursor: pointer;
     &:hover {
       filter: invert(100%);
+      transition: filter 500ms ease-in;
       opacity: 0.9;
     }
   }
@@ -206,6 +207,11 @@ const ReserveButton = styled.a`
   &:hover {
     background-color: rgba(0, 0, 0, 0.8);
     transition: background-color 1000ms linear;
+  }
+
+  @media screen and (max-width: 1100px) {
+    top: 70px;
+    right: 20px;
   }
 `;
 
