@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import TitleView from "./views/TitleView";
 import NavigationBar from "./views/NavigationBar";
+import WelcomePage from "./views/WelcomePage";
+import Specialities from "./views/Specialities";
+import OurMenu from "./views/OurMenu";
+import Reservations from "./views/Reservations";
+import Contact from "./views/Contact";
 import styled from "styled-components";
 import "./App.css";
 
@@ -10,6 +15,11 @@ class App extends Component {
       <AppContainer>
         <NavigationBar />
         <TitleView />
+        <WelcomePage />
+        <Specialities />
+        <OurMenu />
+        <Reservations />
+        <Contact />
       </AppContainer>
     );
   }
