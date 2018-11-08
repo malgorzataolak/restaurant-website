@@ -252,6 +252,7 @@ const SliderWrapper = styled.div`
   height: 100%;
   img {
     width: 100%;
+    vertical-align: bottom; //empty line under image fix
   }
   width: 100%;
   transform: ${props =>

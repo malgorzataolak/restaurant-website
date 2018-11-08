@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TitleView from "./views/TitleView";
 import NavigationBar from "./views/NavigationBar";
+import InfoBar from "./views/InfoBar";
 import WelcomePage from "./views/WelcomePage";
 import Specialities from "./views/Specialities";
 import OurMenu from "./views/OurMenu";
@@ -15,6 +16,7 @@ class App extends Component {
       <AppContainer>
         <NavigationBar />
         <TitleView />
+        <InfoBar />
         <WelcomePage />
         <Specialities />
         <OurMenu />
@@ -31,6 +33,11 @@ const AppContainer = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  font-family: "Montserrat", sans-serif;
+  p {
+    font-family: "Raleway", sans-serif;
+  }
+
   a {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
