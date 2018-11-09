@@ -45,6 +45,7 @@ class TitleView extends Component {
   componentDidMount() {
     if (this.interval) clearInterval(this.interval);
     this.interval = setInterval(this.nextPicture, 3500);
+    this.props.viewMounted();
   }
 
   componentWillUnmount() {
@@ -81,7 +82,7 @@ class TitleView extends Component {
   }
 
   getCurrentWidth() {
-    console.log("width", document.getElementById("slider").clientWidth);
+    //console.log("width", document.getElementById("slider").clientWidth);
     return document.getElementById("slider").clientWidth;
   }
   render() {
@@ -94,7 +95,7 @@ class TitleView extends Component {
         />
         <SliderWrapper value={this.state.translateValue}>
           {this.state.images.map((image, i) => (
-            <Fragment>
+            <Fragment key={i + "slider"}>
               <picture>
                 <source
                   media="(max-width: 1000px)"

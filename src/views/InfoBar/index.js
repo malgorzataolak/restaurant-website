@@ -8,25 +8,25 @@ import email from "./assets/email.png";
 
 const InfoBar = () => (
   <InfoBarContainer>
-    <DataTile>
+    <DataTile key={"i-time"}>
       <img src={clock} alt="clock" />
       <h2>Opening Time</h2>
       <p>Monday - Saturday</p>
       <p>9am - 10pm</p>
     </DataTile>
-    <DataTile>
+    <DataTile key={"i-location"}>
       <img src={location} alt="location" />
       <h2>Address</h2>
       <p>198 West 21th Street</p>
       <p> Suite 721 New York NY 10016</p>
     </DataTile>
-    <DataTile>
+    <DataTile key={"i-phone"}>
       <img src={phone} alt="phone" />
       <h2>Phone</h2>
       <p>+ 001 234 567</p>
       <p>+ 001 234 567</p>
     </DataTile>
-    <DataTile>
+    <DataTile key={"i-email"}>
       <img src={email} alt="email" />
       <h2>Email</h2>
       <p>sample@mail.com</p>
@@ -44,7 +44,7 @@ const DataTile = styled.div`
   width: 240px;
   letter-spacing: 0.05rem;
   line-height: 1.3;
-  padding: 15px;
+  padding: 20px 15px;
   h2 {
     font-weight: 700;
     font-size: 1.1em;
