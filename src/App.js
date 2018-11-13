@@ -57,10 +57,7 @@ class App extends Component {
           <Fragment>
             {" "}
             <WelcomePage />
-            <div data-aos="fade-up">
-              {" "}
-              <Specialities />
-            </div>
+            <Specialities />
             <OurMenu />
             <Reservations />
           </Fragment>

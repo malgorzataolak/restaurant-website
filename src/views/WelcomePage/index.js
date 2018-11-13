@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import BackgroundText from "../../components/BackgroundText";
+import SectionTitle from "../../components/SectionTitle";
 import styled from "styled-components";
 import chief from "./assets/chief.jpg";
 import "aos/dist/aos.css";
@@ -7,11 +9,10 @@ class WelcomePage extends Component {
   render() {
     return (
       <WelcomeContainer>
-        <TextBackground>Welcome</TextBackground>
+        <BackgroundText text={"Welcome"} top={100} left={5} />
         <TextBox>
-          <div data-aos="fade-up">
-            <h1>Welcome!</h1>
-          </div>
+          <SectionTitle text={"Welcome!"} />
+
           <div data-aos="fade-up" data-aos-duration="2500">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -32,24 +33,6 @@ class WelcomePage extends Component {
 }
 
 export default WelcomePage;
-
-const TextBackground = styled.div`
-  color: #302939;
-  font-weight: 700;
-  font-size: 6rem;
-  opacity: 0.09;
-  z-index: 0;
-  position: absolute;
-  top: 10px;
-  left: 5%;
-  transform-origin: 100% 0%;
-  cursor: none;
-  transform: translate(-100%, 0%) rotate(-90deg) !important;
-  &:hover {
-    opacity: 1;
-    transition: opacity 500ms ease-in-out;
-  }
-`;
 
 const TextBox = styled.div`
   width: 30%;
