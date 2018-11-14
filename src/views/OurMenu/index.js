@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
-import posed, { PoseGroup } from "react-pose";
+import SectionTitle from "../../components/SectionTitle";
+import BackgroundText from "../../components/BackgroundText";
+import "aos/dist/aos.css";
 
 class OurMenu extends Component {
   constructor(props) {
@@ -8,11 +10,17 @@ class OurMenu extends Component {
   }
   render() {
     return (
-      <Fragment>
-        <h1>Our Menu</h1>
-      </Fragment>
+      <MenuSectionContainer>
+        <SectionTitle text={"Our Menu"} />
+        <BackgroundText text={"Menu"} />
+      </MenuSectionContainer>
     );
   }
 }
 
 export default OurMenu;
+
+const MenuSectionContainer = styled.div`
+  height: 500px;
+  position: relative;
+`;
