@@ -71,7 +71,7 @@ class TitleView extends Component {
     if (this.state.currentIndex === 0) {
       return;
     }
-    if (this.state.currentIndex == 1) {
+    if (this.state.currentIndex === 1) {
       this.setState({ leftVisible: false });
     }
 
@@ -86,7 +86,7 @@ class TitleView extends Component {
     return document.getElementById("slider").clientWidth;
   }
   render() {
-    console.log("currentState", this.state);
+    // console.log("currentState", this.state);
     return (
       <Container>
         <ArrowLeft
