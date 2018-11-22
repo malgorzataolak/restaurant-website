@@ -242,12 +242,12 @@ class OurMenu extends Component {
             {Object.entries(navs).map(([key, value]) => {
               let active = false;
               if (key == this.state.current) {
-                console.log('hello true', key, this.state.current);
+                console.log("hello true", key, this.state.current);
                 active = true;
               }
               return (
                 <li key={key} data-aos="fade-up" data-aos-duration="1940">
-                  <NavItem active={active} onClick={() => this.changeTab(key)} >
+                  <NavItem active={active} onClick={() => this.changeTab(key)}>
                     {value}
                   </NavItem>
                 </li>
@@ -328,9 +328,8 @@ const DishesContainer = styled.div`
   }
 `;
 
-
-const NavItem=styled.h1 `
-  color: ${props => props.active ? '#302939' : 'antiquewhite'};
+const NavItem = styled.h1`
+  color: ${props => (props.active ? "white" : "antiquewhite")};
   margin: 0;
   line-height: 40px;
   vertical-align: middle;
@@ -340,25 +339,30 @@ const NavItem=styled.h1 `
   position: relative;
   letter-spacing: 0.05rem;
   text-decoration: none;
-&:after {
-  bottom: 0;
-  content: "";
-  display: block;
-  height: 1px;
-  left: 50%;
-  position: absolute;
-  background: rgba(255, 255, 255, 0.6);
-  transition: width 0.3s ease 0s, left 0.3s ease 0s;
-  width: 0;
-}
-&:hover {
-  color: white;
-}
-&:hover:after {
-  width: 100%;
-  left: 0;
-}
+  &:after {
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
 
+  ${({ active }) =>
+    active &&
+    `
+  border-bottom:1px solid white;
+  `};
+  &:hover {
+    color: white;
+  }
+  &:hover:after {
+    width: 100%;
+    left: 0;
+  }
 `;
 
 const MenuNav = styled.ul`
@@ -370,12 +374,13 @@ const MenuNav = styled.ul`
 
   li {
     padding: 0px 10px;
-
-   
   }
 
   @media screen and (max-width: 600px) {
     flex-direction: column;
+    width: 13rem;
+    margin: 0 auto;
+    margin-top: 15px;
   }
 `;
 
