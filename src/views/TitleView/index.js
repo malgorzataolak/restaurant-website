@@ -119,7 +119,7 @@ class TitleView extends Component {
         </TextContainer>
         <ReserveButton href="tel:48000000000">
           <PhoneIcon src={phone} />
-          Reserve Table
+          Reservation
           <p>+48 000 000 000</p>
         </ReserveButton>
         <ArrowRight onClick={this.nextPicture} />
@@ -213,6 +213,13 @@ const ReserveButton = styled.a`
   @media screen and (max-width: 1100px) {
     top: 70px;
     right: 20px;
+  }
+
+  @media screen and (max-width: 550px) {
+    padding: 5px;
+    bottom: 30px;
+    top: unset;
+    right: 10px;
   }
 `;
 
