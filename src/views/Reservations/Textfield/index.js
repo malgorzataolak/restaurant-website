@@ -1,20 +1,37 @@
 import React, { Component, Fragment } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 class Textfield extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      isOnBlur: false,
+      isFilled: false
+    };
     this.onFocusHandler = this.onFocusHandler.bind(this);
     this.onBlurHandler = this.onBlurHandler.bind(this);
     this.onChangeHandler = this.onChangeHandler.bind(this);
   }
 
-  onFocusHandler() {}
+  onFocusHandler(e) {
+    console.log("on focus");
+    let target = e.target;
 
-  onBlurHandler() {}
+    this.setState({ isBlured: false, isFilled: true });
+  }
 
-  onChangeHandler() {}
+  onBlurHandler(e) {
+    console.log(e.target.value);
+    let isFilled = false;
+    if (e.target.value) {
+      isFilled = true;
+    }
+    this.setState({ isBlured: true, isFilled: isFilled });
+  }
+
+  onChangeHandler(e) {
+    console.log("on change");
+  }
 
   render() {
     return (
@@ -28,7 +45,7 @@ class Textfield extends Component {
           maxLength="40"
         />
         <Bar />
-        <Label>{this.props.inputName}</Label>
+        <Label textSmall={this.state.isFilled}>{this.props.inputName}</Label>
       </TextfieldContainer>
     );
   }
@@ -38,7 +55,20 @@ export default Textfield;
 
 const Label = styled.label`
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 400;
+  line-height: 18px;
+  position: absolute;
+  top: 0px;
+  width: auto;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  left: 0px;
+  ${props =>
+    props.textSmall &&
+    css`
+      top: -20px;
+      font-size: 12px;
+    `};
 `;
 
 const Bar = styled.div`
@@ -65,9 +95,12 @@ const Bar = styled.div`
 `;
 
 const Input = styled.input`
+  width: 100%;
   background: rgba(0, 0, 0, 0);
   border: none;
   outline: none;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
   &:focus {
     outline: none;
     border-color: transparent;
@@ -79,5 +112,8 @@ const Input = styled.input`
 `;
 
 const TextfieldContainer = styled.div`
-  width: auto;
+  position: relative;
+  margin: 30px 0px;
+  width: 100%;
+  max-width: 300px;
 `;
