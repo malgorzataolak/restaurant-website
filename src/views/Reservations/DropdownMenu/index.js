@@ -7,6 +7,7 @@ class DropdownMenu extends Component {
     this.state = {
       isOpen: false
     };
+
     this.openMenu = this.openMenu.bind(this);
     this.selectItem = this.selectItem.bind(this);
   }
@@ -20,35 +21,39 @@ class DropdownMenu extends Component {
     this.setState({ isOpen: (this.isOpen = !this.isOpen) });
   }
 
+  handleClickOutside(e) {}
+
   selectItem(e) {}
 
   render() {
-    if (this.currentOption == undefined || this.props.currentOption == null)
-      return null;
+    console.log("dropdown", this.props);
+
     return (
       <DropdownContainer>
         <CurrentOption onClick={this.openMenu}>
-          {this.props.currentOption}
+          {this.props.placeholder ? this.props.placeholder : this.props.current}
         </CurrentOption>
-        <MenuList>
-          {Object.entries(this.props.list).map(([key, value]) => {
-            return (
-              <MenuItem key={key}>
-                <input
-                  name={value}
-                  type="radio"
-                  key={key}
-                  id={key + value}
-                  value={value}
-                  onClick={e => {
-                    this.selectItem(e);
-                  }}
-                />
-                <label htmlFor={key + value}>{value}</label>
-              </MenuItem>
-            );
-          })}
-        </MenuList>
+        {this.state.isOpen ? (
+          <MenuList>
+            {Object.entries(this.props.list).map(([key, value]) => {
+              return (
+                <MenuItem key={key}>
+                  <input
+                    name={value}
+                    type="radio"
+                    key={key}
+                    id={key + value}
+                    value={value}
+                    onClick={e => {
+                      this.selectItem(e);
+                    }}
+                  />
+                  <label htmlFor={key + value}>{value}</label>
+                </MenuItem>
+              );
+            })}
+          </MenuList>
+        ) : null}
       </DropdownContainer>
     );
   }
