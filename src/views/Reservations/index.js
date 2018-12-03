@@ -59,15 +59,12 @@ class Reservations extends Component {
             name={"first_name"}
           />
           <Textfield type={"text"} inputName={"Last Name"} name={"last_name"} />
-          <label>Number of Guests</label>
           <DropdownMenu
             placeholder={this.state.guests_placeholder}
             current={this.state.guests}
             list={this.guest_items}
           />
-          <label>Pick a date</label>
           <Calendar />
-          <label>Pick an hour</label>
           <DropdownMenu
             placeholder={this.state.hour_placeholder}
             current={this.state.hour}
