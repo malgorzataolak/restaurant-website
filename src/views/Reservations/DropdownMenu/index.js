@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
+import posed from "react-pose";
 
 class DropdownMenu extends Component {
   constructor(props) {
@@ -29,7 +30,10 @@ class DropdownMenu extends Component {
     }
   }
 
-  selectItem(e) {}
+  selectItem(e) {
+    this.props.handler(e.target.value, this.props.name);
+    setTimeout(this.openMenu, 0);
+  }
 
   render() {
     return (
@@ -38,27 +42,25 @@ class DropdownMenu extends Component {
           {this.props.placeholder ? this.props.placeholder : this.props.current}
         </CurrentOption>
         <Bar isMenuOpen={this.state.isOpen} />
-        {this.state.isOpen ? (
-          <MenuList>
-            {Object.entries(this.props.list).map(([key, value]) => {
-              return (
-                <MenuItem key={key}>
-                  <input
-                    name={value}
-                    type="radio"
-                    key={key}
-                    id={key + value}
-                    value={value}
-                    onClick={e => {
-                      this.selectItem(e);
-                    }}
-                  />
-                  <label htmlFor={key + value}>{value}</label>
-                </MenuItem>
-              );
-            })}
-          </MenuList>
-        ) : null}
+        <MenuList pose={this.state.isOpen ? "open" : "close"}>
+          {Object.entries(this.props.list).map(([key, value]) => {
+            return (
+              <MenuItem key={key}>
+                <input
+                  name={value}
+                  type="radio"
+                  key={key}
+                  id={key + value}
+                  value={value}
+                  onClick={e => {
+                    this.selectItem(e);
+                  }}
+                />
+                <label htmlFor={key + value}>{value}</label>
+              </MenuItem>
+            );
+          })}
+        </MenuList>
       </DropdownContainer>
     );
   }
@@ -66,9 +68,58 @@ class DropdownMenu extends Component {
 
 export default DropdownMenu;
 
-const MenuItem = styled.div``;
+const MenuItem = styled.div`
+  padding: 10px;
+  align-items: center;
+  background: #302939;
+  color: white;
+  border: 0.5px solid #51465f;
+  margin: 1px 0px;
+  cursor: pointer;
+  input {
+    width: 100%;
+    opacity: 0;
+    display: none;
+    left: -99999px;
+  }
 
-const MenuList = styled.div``;
+  label {
+    color: ${props => (props.color ? props.color : "white")};
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: block;
+    cursor: pointer;
+  }
+
+  &:hover {
+    background: #150f1d;
+    transition: background 0.3s ease-in-out;
+  }
+`;
+
+const MenuList = styled(
+  posed.div({
+    open: {
+      opacity: 1,
+      originY: 0,
+      scaleY: 1
+    },
+    close: {
+      opacity: 0,
+      scaleY: 0
+    }
+  })
+)`
+  z-index: 100;
+  position: absolute;
+  top: 30px;
+  height: auto;
+  max-height: 250px;
+  width: 100%;
+  overflow: auto;
+`;
 
 const Bar = styled.div`
   position: relative;
@@ -115,4 +166,6 @@ text-align:left;
   }
 `;
 
-const DropdownContainer = styled.div``;
+const DropdownContainer = styled.div`
+  position: relative;
+`;

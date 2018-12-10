@@ -22,6 +22,8 @@ class Reservations extends Component {
     this.mounted = false;
     this.guest_items = null;
     this.hour_items = [];
+
+    this.chooseOption = this.chooseOption.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +46,16 @@ class Reservations extends Component {
     });
     this.mounted = true;
   }
+
+  chooseOption(value, mode) {
+    console.log("option handler", value, mode);
+    if (mode == "guests") {
+      this.setState({ guests: value, guests_placeholder: null });
+    } else if (mode == "hour") {
+      this.setState({ hour: value, hour_placeholder: null });
+    } else return null;
+  }
+
   render() {
     if (!this.mounted) return null;
 
@@ -63,12 +75,16 @@ class Reservations extends Component {
             placeholder={this.state.guests_placeholder}
             current={this.state.guests}
             list={this.guest_items}
+            name={"guests"}
+            handler={this.chooseOption}
           />
           <Calendar />
           <DropdownMenu
             placeholder={this.state.hour_placeholder}
             current={this.state.hour}
             list={this.hour_items}
+            name={"hour"}
+            handler={this.chooseOption}
           />
         </FormContainer>
       </ReservationsContainer>

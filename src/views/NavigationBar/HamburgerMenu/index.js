@@ -60,7 +60,7 @@ const DropdownMenu = styled(
     }
   })
 )`
-  display: "block";
+  display: block;
   position: absolute;
   top: 60px;
   width: 100vh;
