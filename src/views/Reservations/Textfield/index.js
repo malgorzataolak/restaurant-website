@@ -34,6 +34,22 @@ class Textfield extends Component {
   }
 
   render() {
+    if (this.props.textarea) {
+      return (
+        <TextfieldContainer>
+          <Textarea
+            type={this.props.type ? this.props.type : "number"}
+            name={this.props.name}
+            onFocus={this.onFocusHandler}
+            onBlur={this.onBlurHandler}
+            onChange={this.onChangeHandler}
+            maxLength="40"
+          />
+          <Bar />
+          <Label textSmall={this.state.isFilled}>{this.props.inputName}</Label>
+        </TextfieldContainer>
+      );
+    }
     return (
       <TextfieldContainer>
         <Input
@@ -94,6 +110,25 @@ const Bar = styled.div`
   }
 `;
 
+const Textarea = styled.textarea`
+  width: 100%;
+  background: rgba(0, 0, 0, 0);
+
+  outline: none;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  border: none;
+  border-bottom: 1px solid black;
+  resize: vertical;
+  &:focus {
+    outline: none;
+    border-color: transparent;
+  }
+  &:focus ~ ${Bar}:before, &:focus ~ ${Bar}:after {
+    width: 50%;
+  }
+`;
+
 const Input = styled.input`
   width: 100%;
   background: rgba(0, 0, 0, 0);
@@ -115,5 +150,5 @@ const TextfieldContainer = styled.div`
   position: relative;
   margin: 30px 0px;
   width: 100%;
-  max-width: 300px;
+  //max-width: 300px;
 `;

@@ -63,12 +63,22 @@ class App extends Component {
           </Fragment>
         )}
         <Contact />
+        <Footer>© Copyright ©2018 All rights reserved </Footer>
       </AppContainer>
     );
   }
 }
 
 export default App;
+
+const Footer = styled.footer`
+  background: #282c34;
+  min-height: 50px;
+  text-align: center;
+  justify-content: center;
+  line-height: 32px;
+  color: white;
+`;
 
 const AppContainer = styled.div`
   width: 100%;
