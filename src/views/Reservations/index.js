@@ -6,6 +6,7 @@ import posed, { PoseGroup } from "react-pose";
 import Textfield from "./Textfield";
 import Calendar from "./Calendar";
 import DropdownMenu from "./DropdownMenu";
+import Button from "../../components/Button";
 
 class Reservations extends Component {
   constructor(props) {
@@ -86,6 +87,7 @@ class Reservations extends Component {
             name={"hour"}
             handler={this.chooseOption}
           />
+          <Button text={"Book Table"} />
         </FormContainer>
       </ReservationsContainer>
     );
