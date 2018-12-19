@@ -63,7 +63,9 @@ class App extends Component {
           </Fragment>
         )}
         <Contact />
-        <Footer>© Copyright ©2018 All rights reserved </Footer>
+        <Footer>
+          <a href={""}>Back to the top</a>© Copyright ©2018 All rights reserved{" "}
+        </Footer>
       </AppContainer>
     );
   }
@@ -73,11 +75,22 @@ export default App;
 
 const Footer = styled.footer`
   background: #282c34;
-  min-height: 50px;
   text-align: center;
   justify-content: center;
-  line-height: 32px;
+  font-size: 0.9rem;
+  padding: 15px;
   color: white;
+  a {
+    display: block;
+    width: 120px;
+    margin: 0 auto;
+
+    padding: 5px;
+    color: antiquewhite;
+    &:hover {
+      color: gold;
+    }
+  }
 `;
 
 const AppContainer = styled.div`

@@ -154,6 +154,7 @@ text-align:left;
    font-size: 1rem;
   font-weight: 400;
   line-height: 18px;
+  margin:30px 0px;
   
    ${({ isMenuOpen }) =>
      isMenuOpen &&

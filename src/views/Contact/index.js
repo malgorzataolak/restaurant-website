@@ -137,8 +137,6 @@ const ContactContainer = styled.div`
 `;
 
 const Grid = styled.div`
-  width: 90%;
-  margin: 0 auto;
   display: grid;
   grid-template-columns: 50% 50%;
   @media screen and (max-width: 1100px) {
@@ -155,6 +153,7 @@ const MapContainer = styled.div`
     display: block;
     padding: 5px;
     font-size: 0.8rem;
+
     &:hover {
       color: #302939;
     }

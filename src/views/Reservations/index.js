@@ -97,7 +97,7 @@ class Reservations extends Component {
 export default Reservations;
 
 const FormContainer = styled.div`
-  width: 500px;
+  width: 20%;
   margin: 0 auto;
 `;
 
